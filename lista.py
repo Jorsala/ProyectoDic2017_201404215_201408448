@@ -31,7 +31,7 @@ class lusuarios(object):
 		
 		temporal = self.primero
 		while  temporal != None:
-			print temporal.oponente
+			print temporal.usuario
 			temporal = temporal.siguiente
 
 	def eliminar(self, indice):
