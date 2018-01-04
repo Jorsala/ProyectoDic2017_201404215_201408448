@@ -5,7 +5,10 @@
  */
 package spotify;
 
-
+/**
+ *
+ * @author sinozuke
+ */
 public class Spotify {
 
     /**

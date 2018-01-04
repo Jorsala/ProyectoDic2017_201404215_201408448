@@ -13,8 +13,12 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-
+/**
+ *
+ * @author sinozuke
+ */
 public class Login extends javax.swing.JFrame{
 
     /**
@@ -22,6 +26,7 @@ public class Login extends javax.swing.JFrame{
      */
     public Login() {
         initComponents();
+
 
        
     }
@@ -48,10 +53,10 @@ public class Login extends javax.swing.JFrame{
 
         jPanel1.setLayout(null);
 
-        jLabel4.setForeground(java.awt.Color.gray);
+        jLabel4.setForeground(java.awt.Color.lightGray);
         jLabel4.setText("-----------------------Or----------------------------");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(380, 220, 230, 14);
+        jLabel4.setBounds(320, 220, 380, 17);
 
         jTextField1.setBackground(java.awt.Color.darkGray);
         jTextField1.setForeground(java.awt.Color.lightGray);
@@ -95,8 +100,8 @@ public class Login extends javax.swing.JFrame{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
