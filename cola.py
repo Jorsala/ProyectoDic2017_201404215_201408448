@@ -1,16 +1,14 @@
 import commands
 
-
 class nodo(object):
 	"""docstring for nodo"""
-	def __init__(self, usuario, password):
-		self.usuario = usuario
-		self.password = password
+	def __init__(self, dato):
+		self.dato =dato
 		self.siguiente = None
 		self.anterior = None
 
-class lusuarios(object):
-	"""docstring for lusuarios"""
+class ljuegos(object):
+	"""docstring for ljuegos"""
 	def __init__(self):
 		self.primero = None
 
@@ -31,10 +29,10 @@ class lusuarios(object):
 		
 		temporal = self.primero
 		while  temporal != None:
-			print temporal.usuario
+			print temporal.oponente
 			temporal = temporal.siguiente
 
-	def eliminar(self, indice):
+	def eliminar(self, indice): #la eliminacion es por indice
 		
 		if self.primero != None:
 			temporal = self.primero
@@ -75,31 +73,30 @@ class lusuarios(object):
 		pass
 
 	def graficar(self):
-		archi = open('lusuarios.dot','w')
+		archi = open('cola.dot','w')
 		archi.write('digraph Ilustrasion5{\n')
 		archi.write('node [shape=record fontsize=10 fontname=\" Verdana\"style=filled];\n')
 		contador = 0
 		temporal = self.primero
 		while temporal != None:
 			contador = contador +1
-			archi.write('node'+str(contador)+'[label="' + str(temporal.usuario)+ ' contraseña: '+str(temporal.password)'"];\n')
+			archi.write('node'+str(contador)+'[label="' + str(temporal.dato)+'"];\n')
 			if temporal.siguiente != None:
 				archi.write('node'+str(contador)+'->node'+str(contador+1)+'\n')
-				archi.write('node'+str(contador+1)+'->node'+str(contador)+'\n')
+				
 			temporal = temporal.siguiente
 		archi.write('\n}')
 		archi.close()	
-		commands.getoutput('dot -Tpng lusuarios.dot -o lusuarios.png')
-		commands.getoutput('xdg-open lusuarios.png')
-		commands.getoutput('cp lusuarios.png C:/Users/Jorge Salazar/Desktop')
+		commands.getoutput('dot -Tpng cola.dot -o cola.png')
+		commands.getoutput('xdg-open cola.png')
+		commands.getoutput('cp cola.png ')
 
-"""prueba = ljuegos()
+prueba = ljuegos()
 for y in range(0,10):
-	prueba.insertar(nodo(str(y),y,y,y,y,y))
+	prueba.insertar(nodo(str(y)))
 
-prueba.recorrer()
-prueba.eliminar(9)
-prueba.eliminar(0)
-prueba.eliminar(3)
 
-prueba.graficar()"""
+prueba.eliminar(5)
+
+
+prueba.graficar()

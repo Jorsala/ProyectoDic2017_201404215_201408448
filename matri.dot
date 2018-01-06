@@ -1,0 +1,59 @@
+digraph matriz {
+rankdir=UD;
+node [shape=box]; 
+ 
+{ 
+rank=min; 
+m[label= "matriz"]; 
+nodexa[label="a",rankdir=LR]; 
+nodexb[label="b",rankdir=LR]; 
+nodexc[label="c",rankdir=LR]; 
+nodexr[label="r",rankdir=LR]; 
+nodexs[label="s",rankdir=LR]; 
+
+}
+
+{
+rank=same; 
+nodey2012[label="2012"]; 
+nodedag2012arabe[label= "arabe"]; 
+nodedbg2012bachata[label= "bachata"]; 
+
+}
+{
+rank=same; 
+nodey2015[label="2015"]; 
+nodedbg2015barai[label= "barai"]; 
+nodedcg2015cara[label= "cara"]; 
+
+}
+{
+rank=same; 
+nodey2017[label="2017"]; 
+nodedcg2017cumbia[label= "cumbia"]; 
+nodedrg2017regueton[label= "regueton"]; 
+nodedsg2017salsa[label= "salsa"]; 
+
+}
+m->nodexa->nodexb->nodexc->nodexr->nodexs; 
+nodexs->nodexr->nodexc->nodexb->nodexa;
+m->nodey2012;
+nodey2012->nodey2015[rankdir=UD dir="both"]; 
+nodey2015->nodey2017[rankdir=UD dir="both"]; 
+nodexa->nodedag2012arabe[dir="both"];
+nodexb->nodedbg2012bachata->nodedbg2015barai[dir="both"];
+nodexc->nodedcg2015cara->nodedcg2017cumbia[dir="both"];
+nodexr->nodedrg2017regueton[dir="both"];
+nodexs->nodedsg2017salsa[dir="both"];
+nodey2012->nodedag2012arabe[constraint=false]; 
+nodedag2012arabe->nodey2012[constraint=false]; 
+nodedag2012arabe->nodedbg2012bachata[constraint=false,dir="both"]; 
+nodey2015->nodedbg2015barai[constraint=false]; 
+nodedbg2015barai->nodey2015[constraint=false]; 
+nodedbg2015barai->nodedcg2015cara[constraint=false,dir="both"]; 
+nodey2017->nodedcg2017cumbia[constraint=false]; 
+nodedcg2017cumbia->nodey2017[constraint=false]; 
+nodedcg2017cumbia->nodedrg2017regueton[constraint=false,dir="both"]; 
+nodedrg2017regueton->nodedsg2017salsa[constraint=false,dir="both"]; 
+
+}

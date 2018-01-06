@@ -1,9 +1,7 @@
 import commands
-
-
+import listadejuegos
 class hoja(object):
 	"""docstring for nodob"""
-
 	def __init__(self, nombre):
 		
 		self.nombre = nombre
@@ -11,23 +9,19 @@ class hoja(object):
 		self.derecha = None
 		self.izquierda = None
 
-
-
 class arbol(object):
 	"""docstring for arbol"""
 	def __init__(self):
 	
 		self.raiz = None
-		self.total = 0
-
-
+		self.contador = 0
 
 
 	def add(self, hijo):
 		
 		
 		self.raiz = self.agg(hijo, self.raiz)
-
+		self.contador = self.contador + 1
 
 
 	def agg(self, hijo, raiz):
@@ -45,48 +39,6 @@ class arbol(object):
 
 		return raiz
 
-
-	def eliminar(self, idd):
-
-
-		self.raiz = self.el(idd, self.raiz)
-
-	def el(self, idd, nodo):
-
-		if nodo == None:
-
-			return None
-		if nodo.nombre == idd:
-
-			return self.juntar(nodo.izquierda, nodo.derecha)
-
-		if nodo.nombre > idd:
-
-			nodo.izquierda = self.el(idd, nodo.izquierda)
-
-		else:
-
-			nodo.derecha = self.el(idd, nodo.derecha)
-
-		return nodo
-
-	def juntar(self, izq, der):
-
-		if izq == None:
-			return der
-
-		if der== None:
-			return izq
-
-		mitad = self.juntar(izq.derecha, der.izquierda)
-		izq.derecha = mitad
-		der.izquierda = izq
-		return der
-
-
-
-
-
 	
 	def graficar(self):
 		archi= open('binario.dot','w')
@@ -99,13 +51,10 @@ class arbol(object):
 
 		commands.getoutput('dot -Tpng binario.dot -o binario.png')
 		commands.getoutput('xdg-open binario.png')
-		commands.getoutput('cp binario.png C:/Users/Jorge Salazar/Desktop')
-
-
 
 	def ghojas(self, archi, raiz):
 		if raiz != None:
-			archi.write(str(raiz.nombre)+'[label="<f0>|<f1> Us:'+str(raiz.nombre)'|<f2>"]; \n')
+			archi.write(str(raiz.nombre)+'[label="<f0>|<f1> Cancion: '+str(raiz.nombre) + '|<f2>"]; \n')
 			self.ghojas(archi, raiz.izquierda)
 			self.ghojas(archi, raiz.derecha)
 
@@ -118,7 +67,47 @@ class arbol(object):
 				archi.write(str(raiz.nombre)+ ':f2->'+str(raiz.derecha.nombre)+ '\n')
 			self.enlazes(archi, raiz.izquierda)
 			self.enlazes(archi, raiz.derecha)
+#----------------------------------------------------------------------------------------------
 
+	def eliminar(self, nombre):
+
+
+		self.raiz = self.el(nombre, self.raiz)
+		#self.raiz = self.balance.equilibrar(self.raiz)
+
+	def el(self, nombre, nodo):
+		
+		if nodo == None:
+
+			return None
+		if nodo.nombre == nombre:
+
+			return self.juntar(nodo.izquierda, nodo.derecha)
+
+		if nodo.nombre > nombre:
+
+			nodo.izquierda = self.el(nombre, nodo.izquierda)
+
+		else:
+
+			nodo.derecha = self.el(nombre, nodo.derecha)
+
+		return nodo
+
+	def juntar(self, izq, der):
+		
+		if izq == None:
+			return der
+
+		if der== None:
+			return izq
+
+		mitad = self.juntar(izq.derecha, der.izquierda)
+		izq.derecha = mitad
+		der.izquierda = izq
+		return der 
+
+#------------------------------------------------------------------------------------------------
 
 	def buscar(self,raiz,idd):
 		if raiz == None:
@@ -134,39 +123,22 @@ class arbol(object):
 			return self.buscar(raiz.derecha , idd)
 
 
-	def modificar(self, idd, campo, nuevo):
-		nodo = self.buscar(self.raiz , idd)
-
-		if nodo != None:
-
-			if campo == 'nombre':
-				nodo.nombre = nuevo
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-"""prueba = arbol()
-prueba.add(hoja('uno','dos','tres'))
-prueba.add(hoja('z','dos','tres'))
-prueba.add(hoja('dos','dos','tres'))
-prueba.add(hoja('tres','dos','tres'))
-prueba.add(hoja('cuatro','dos','tres'))
-prueba.add(hoja('cinco','dos','tres'))
-prueba.graficar()
-prueba.modificar('z', 'line', 'zzozo' )
-prueba.graficar()"""
-
+prueba1 = arbol()
+prueba1.add(hoja('uno'))
+prueba1.add(hoja('dos'))
+prueba1.add(hoja('tres'))
+prueba1.add(hoja('cuatro'))
+prueba1.add(hoja('fierro'))
+prueba1.add(hoja('canada'))
+prueba1.add(hoja('hola'))
+prueba1.add(hoja('comida'))
+prueba1.add(hoja('zop'))
+prueba1.eliminar('uno')
+prueba1.graficar()
+#print prueba.buscar(prueba.raiz, 'cinco').contra
 
 		
 		

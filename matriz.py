@@ -1,16 +1,15 @@
 import commands
 class nododisperso(object):
     """docstring for nododisperso; nodo de la matriz"""
-    def __init__(self, x,y,genero,anio):
+    def __init__(self, x,y,valor):
         self.x = x
         self.y = y
-        self.genero = genero
-        self.anio = anio
+        self.valor = valor
         self.siguiente = None
         self.anterior = None
         self.arriba= None
         self.abajo = None
-
+        self.dano = 'no'
 
 class listaHo(object):
 
@@ -454,101 +453,23 @@ class matriz(object):
 
         commands.getoutput('dot -Tpng matri.dot -o matri.png')
         commands.getoutput('xdg-open matri.png')
-        commands.getoutput('cp matri.png /home/nicte')
+        commands.getoutput('cp matri.png ')
 
 
 
-class nodoprofundidad(object): #cuatro niveles
-    """docstring for nodoprofundidad"""
-    def __init__(self, nivel):
-
-        self.nivel = nivel
-        self.siguiente = None
-        self.anterior = None
-        self.tablero = matriz()
-
-
-class lprofundiad(object):
-    """docstring for lprofundiad"""
-    def __init__(self):
-        self.primero = None
-        self.ultimo = None
-        self.us =""
-        self.total = 0
-
-    def insertar(self,elemento):
-        if self.primero == None:
-            self.primero = elemento
-        else:
-            temporal = self.primero
-            while temporal.siguiente != None:
-                temporal = temporal.siguiente
-
-            temporal.siguiente = elemento
-            elemento.anterior = temporal
-
-    def recorrer(self):
-        temporal = self.primero
-        while temporal!= None:
-            
-            print temporal.nivel
-            temporal=temporal.siguiente
-
-    def buscarnivel(self, nivel):
-        
-        temporal = self.primero
-
-        while temporal!= None:
-            if temporal.nivel == nivel:
-                return temporal
-            temporal = temporal.siguiente
-
-
-        return None
-
-    def supertotal(self):
-        
-        temporal = self.primero
-        t=0
-        while temporal != None:
-            t= t + temporal.tablero.totalel
-            temporal= temporal.siguiente
-
-        return t
-            
-
-
-
-
-"""
-prueba = lprofundiad()
-
-
-prueba.insertar(nodoprofundidad(2))
-prueba.insertar(nodoprofundidad(3))
-prueba.insertar(nodoprofundidad(4))
-prueba.primero.crearmatriz(1,5);
-prueba.primero.tablero.graficar()
-"""
 
 
         
-"""
+
 mat = matriz()
-mat.insertar(1,2,'sds')
-mat.insertar(1,1,'sds')
-mat.insertar(14,2,'sds')
-mat.insertar(15,1,'sds')
-mat.insertar(6,5,'sds')
-mat.insertar(6,199,'sds')
-mat.insertar(4,11,'sds')
-mat.insertar(11,21,'sds')
-mat.insertar(123,200,'sds')
-mat.insertar(20,26,'sds')
-mat.insertar(14,23,'sds')
-mat.insertar(12,14,'sds')
-mat.insertar(124,201,'sds')
-mat.insertar(125,'202','sds')
+mat.insertar('c',2017,'cumbia')
+mat.insertar('a',2012,'arabe')
+mat.insertar('c',2015,'cara')
+mat.insertar('b',2015,'barai')
+mat.insertar('b',2012,'bachata')
+mat.insertar('s',2017,'salsa')
+mat.insertar('r',2017,'regueton')
+
+
 mat.graficar()
-"""
 
