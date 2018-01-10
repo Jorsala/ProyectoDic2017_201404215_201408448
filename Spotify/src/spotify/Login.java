@@ -11,8 +11,11 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 
 /**
@@ -47,6 +50,7 @@ public class Login extends javax.swing.JFrame{
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,7 +60,7 @@ public class Login extends javax.swing.JFrame{
         jLabel4.setForeground(java.awt.Color.lightGray);
         jLabel4.setText("-----------------------Or----------------------------");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(320, 220, 380, 17);
+        jLabel4.setBounds(390, 220, 380, 14);
 
         jTextField1.setBackground(java.awt.Color.darkGray);
         jTextField1.setForeground(java.awt.Color.lightGray);
@@ -86,6 +90,15 @@ public class Login extends javax.swing.JFrame{
         jPanel1.add(jLabel2);
         jLabel2.setBounds(110, 10, 630, 100);
 
+        jButton1.setLabel("Cargar Archivo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(410, 470, 170, 23);
+
         jLabel1.setForeground(new java.awt.Color(62, 62, 62));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/spotify/m.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -106,6 +119,20 @@ public class Login extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //System.out.println("este boton si funciona");
+        JFileChooser file=new JFileChooser();
+        file.showOpenDialog(this);
+        File abre=file.getSelectedFile();
+        String path = abre.getPath();
+        try {
+            LeerXML d = new LeerXML();
+            d.recorrerXml(path);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,6 +170,7 @@ public class Login extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
