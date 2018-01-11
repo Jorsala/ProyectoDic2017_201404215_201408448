@@ -1,5 +1,6 @@
-import commands
-
+from graphviz import render
+import os
+os.environ["PATH"] += os.pathsep + 'C:/Program Files (x86)/Graphviz2.38/bin/'
 class nodo(object):
 	"""docstring for nodo"""
 	def __init__(self, dato):
@@ -29,7 +30,7 @@ class ljuegos(object):
 		
 		temporal = self.primero
 		while  temporal != None:
-			print temporal.oponente
+			print (temporal.oponente)
 			temporal = temporal.siguiente
 
 	def eliminar(self, indice): #la eliminacion es por indice
@@ -87,12 +88,13 @@ class ljuegos(object):
 			temporal = temporal.siguiente
 		archi.write('\n}')
 		archi.close()	
-		commands.getoutput('dot -Tpng cola.dot -o cola.png')
+		"""commands.getoutput('dot -Tpng cola.dot -o cola.png')
 		commands.getoutput('xdg-open cola.png')
-		commands.getoutput('cp cola.png ')
+		commands.getoutput('cp cola.png ')"""
+		render('dot', 'png', 'cola.dot') 
 
 prueba = ljuegos()
-for y in range(0,10):
+for y in range(0,7):
 	prueba.insertar(nodo(str(y)))
 
 
